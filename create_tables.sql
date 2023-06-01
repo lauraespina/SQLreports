@@ -1,3 +1,12 @@
+CREATE DATABASE retail
+	WITH OWNER = postgres
+	ENCODING = 'UTF8'
+    	LC_COLLATE = 'English_United Kingdom.1252'
+    	LC_CTYPE = 'English_United Kingdom.1252'
+    	TABLESPACE = pg_default
+    	CONNECTION LIMIT = -1
+    	IS_TEMPLATE = False;
+
 CREATE SCHEMA IF NOT EXISTS order_customer
 	AUTHORIZATION postgres;
 
@@ -57,6 +66,5 @@ CREATE TABLE customer.customers (
 	CONSTRAINT fk_customer_default_billing_address_id FOREIGN KEY (default_billing_address_id) REFERENCES address.addresses(id),
 	CONSTRAINT fk_customer_default_delivery_address_id FOREIGN KEY (default_delivery_address_id) REFERENCES address.addresses(id)
 );
-
 
 ALTER TABLE customer.address ADD CONSTRAINT fk_customer_customers FOREIGN KEY (customer_id) REFERENCES customer.customers(id) ON DELETE CASCADE
